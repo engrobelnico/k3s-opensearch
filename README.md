@@ -1,0 +1,1 @@
+# opensearch deploy on k3s
