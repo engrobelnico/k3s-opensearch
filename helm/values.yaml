@@ -7,8 +7,6 @@ opensearch:
 opensearch-dashboards:
   plugins:
     enabled: false
-  config:
-    opensearchAccount:
-      secret: "VerySecurePassword12!"
-      keyPassphrase:
-        enabled: false
+  extraEnvs: 
+  - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
+    value: "VerySecurePassword12!"
