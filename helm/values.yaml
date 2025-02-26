@@ -3,7 +3,7 @@ opensearch:
   singleNode: true
   extraEnvs: 
   - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
-    value: "some_strong_password_here"
+    value: "VerySecurePassword12!"
 opensearch-dashboards:
   plugins:
     enabled: false
