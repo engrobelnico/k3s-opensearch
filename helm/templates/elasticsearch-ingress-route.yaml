@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: opensearch
+  namespace: opensearch
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`kube.local`) && (PathPrefix(`/opensearch`))
+      kind: Rule
+      services:
+      - name: opensearch-cluster-master
+        port: 9200
+        namespace: opensearch

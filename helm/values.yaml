@@ -1,0 +1,6 @@
+opensearch:
+  clusterName: "opensearch-cluster"
+  singleNode: true
+opensearch-dashboards:
+  plugins:
+    enabled: false
