@@ -10,7 +10,7 @@ spec:
   source:
     path: helm
     repoURL: https://github.com/nicolasleborgnelv/k3s-opensearch.git
-    targetRevision: master
+    targetRevision: main
     helm:
       valueFiles:
       - values.yaml
