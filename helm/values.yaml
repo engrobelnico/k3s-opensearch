@@ -9,7 +9,8 @@ opensearch:
     value: "VerySecurePassword12!"
 opensearch-dashboards:
   plugins:
-    enabled: false
+    security:
+      disabled: true
   config:
     opensearchAccount:
       secret: "VerySecurePassword12!"
