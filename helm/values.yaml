@@ -1,7 +1,17 @@
 opensearch:
   clusterName: "opensearch-cluster"
   singleNode: true
+  plugins:
+    security:
+      disabled: true
   extraEnvs: 
   - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
     value: "VerySecurePassword12!"
 opensearch-dashboards:
+  plugins:
+    enabled: false
+  config:
+    opensearchAccount:
+      secret: "VerySecurePassword12!"
+      keyPassphrase:
+        enabled: false
