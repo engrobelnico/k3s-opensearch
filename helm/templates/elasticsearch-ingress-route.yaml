@@ -12,6 +12,6 @@ spec:
     - match: Host(`kube.local`) && (PathPrefix(`/opensearch`))
       kind: Rule
       services:
-      - name: opensearch-cluster-master
+      - name: opensearch-cluster-masters
         port: 9200
         namespace: opensearch
