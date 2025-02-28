@@ -1,5 +1,23 @@
-opensearch:
-  clusterName: "opensearch-cluster"
-  extraEnvs: 
-  - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
-    value: "VerySecurePassword12!"
+nameOverride: ""
+fullnameOverride: ""
+
+nodeSelector: {}
+tolerations: []
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000 # Specify a non-root UID
+  fsGroup: 1000
+
+manager:
+  securityContext:
+     allowPrivilegeEscalation: false
+  extraEnv: 
+    - name: SKIP_INIT_CONTAINER
+      value: "true"
+  resources:
+    limits:
+      cpu: 200m
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 350Mi
