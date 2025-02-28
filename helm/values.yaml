@@ -1,5 +1,8 @@
 opensearch:
   clusterName: "opensearch-cluster"
+  plugins:
+    security:
+      disabled: true
   extraEnvs: 
   - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
     value: "VerySecurePassword12!"
