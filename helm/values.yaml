@@ -3,4 +3,3 @@ opensearch:
   extraEnvs: 
   - name: "OPENSEARCH_INITIAL_ADMIN_PASSWORD"
     value: "VerySecurePassword12!"
-opensearch-dashboards:
