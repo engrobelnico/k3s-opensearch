@@ -2,7 +2,7 @@ apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
 metadata:
   name: lvopensearch
-  namespace: opensearch
+  namespace: opensearch 
 spec:
   general:
     serviceName: lvopensearch
