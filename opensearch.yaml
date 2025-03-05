@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: helm
-    repoURL: https://github.com/nicolasleborgnelv/k3s-opensearch.git
+    repoURL: https://github.com/engrobelnico/k3s-opensearch.git
     targetRevision: main
     helm:
       valueFiles:
