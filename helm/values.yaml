@@ -1,0 +1,33 @@
+# OpenSearchCluster configuration
+cluster:
+  # -- OpenSearchCluster name, by default release name is used
+  name: "lvopensearch"
+  general:
+    serviceName: lvopensearch
+    version: 2.3.0
+  dashboards:
+    enable: true
+    version: 2.3.0
+    replicas: 1
+    resources:
+      requests:
+         memory: "512Mi"
+         cpu: "200m"
+      limits:
+         memory: "512Mi"
+         cpu: "200m"
+  nodePools:
+    - component: nodes
+      replicas: 3
+      diskSize: "5Gi"
+      nodeSelector:
+      resources:
+         requests:
+            memory: "512Mi"
+            cpu: "200m"
+         limits:
+            memory: "512Mi"
+            cpu: "200m"
+      roles:
+        - "cluster_manager"
+        - "data"
