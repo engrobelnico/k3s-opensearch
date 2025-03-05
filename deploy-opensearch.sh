@@ -9,7 +9,7 @@
 set -o errexit
 
 main () {
-    myNamespace=default
+    myNamespace=opensearch
     NS=$(sudo kubectl get namespace $myNamespace --ignore-not-found);
     if [[ "$NS" ]]; then
         echo "Skipping creation of namespace $myNamespace - already exists";
