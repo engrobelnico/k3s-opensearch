@@ -1,3 +1,9 @@
 # opensearch deploy on k3s
 
-sudo kubectl apply --namespace=opensearch -f cluster.yaml
+helm repo list | grep opensearch
+
+sudo kubectl apply --namespace=opensearch -f helm/templates/cluster.yaml
+sudo kubectl delete opensearchclusters lvopensearch -n opensearch
+
+argocd app delete opensearch --cascade
+argocd app terminate-op opensearch
