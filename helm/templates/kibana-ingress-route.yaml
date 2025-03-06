@@ -12,6 +12,6 @@ spec:
     - match: Host(`kube.local`) && (PathPrefix(`/kibana`))
       kind: Rule
       services:
-      - name: lvopensearch-dashboards
+      - name: opensearch-dashboards
         port: 5601
         namespace: opensearch

@@ -12,6 +12,6 @@ spec:
     - match: Host(`kube.local`) && (PathPrefix(`/opensearch`))
       kind: Rule
       services:
-      - name: lvopensearch-masters
+      - name: opensearch-masters
         port: 9200
         namespace: opensearch
