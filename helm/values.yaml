@@ -5,13 +5,9 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
-    additionalConfig:
-      plugins.security.disabled: true 
   dashboards:
     enable: true
     version: 2.3.0
-    additionalConfig:
-      dashboards.tls.enable: false
     replicas: 1
     resources:
       requests:
@@ -20,6 +16,11 @@ cluster:
       limits:
          memory: "512Mi"
          cpu: "200m"
+    tls:
+      enable: false
+    additionalConfig:
+      # https://opensearch.org/docs/latest/install-and-configure/install-dashboards/tls/
+      opensearch.ssl.verificationMode: none
   nodePools:
     - component: nodes
       replicas: 3
