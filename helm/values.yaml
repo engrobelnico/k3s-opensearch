@@ -5,9 +5,13 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
+    additionalConfig:
+      plugins.security.disabled: true 
   dashboards:
     enable: true
     version: 2.3.0
+    additionalConfig:
+      dashboards.tls.enable: false
     replicas: 1
     resources:
       requests:
