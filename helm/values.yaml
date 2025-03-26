@@ -18,6 +18,8 @@ cluster:
          cpu: "200m"
     tls:
       enable: false
+    opensearchCredentialsSecret:
+      name: opensearch-admin-password
     additionalConfig:
       # https://opensearch.org/docs/latest/install-and-configure/install-dashboards/tls/
       opensearch.ssl.verificationMode: none
