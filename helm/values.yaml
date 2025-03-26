@@ -5,6 +5,9 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
+  extraEnvs: 
+    - name: plugins.security.ssl.http.enabled
+      value: "false"
   dashboards:
     enable: true
     version: 2.3.0
