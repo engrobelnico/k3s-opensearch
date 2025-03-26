@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: opensearch-masters
+                name: opensearch
                 port:
                   number: 9200
