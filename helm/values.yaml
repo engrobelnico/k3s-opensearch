@@ -5,11 +5,17 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
-  extraEnvs: 
-    - name: plugins.security.ssl.http.enabled
-      value: "false"
+    additionalConfig:
+      plugins.security.disabled: true
   dashboards:
     enable: true
+    additionalConfig:
+      opensearch:
+        ssl:
+          verificationMode: none
+      server:
+        ssl:
+          enabled: false
     version: 2.3.0
     replicas: 1
     resources:
