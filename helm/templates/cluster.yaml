@@ -2,17 +2,17 @@
 apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
 metadata:
-  name: lvopensearch
+  name: opensearch
   namespace: opensearch
 spec:
   general:
-    serviceName: lvopensearch
+    serviceName: opensearch
     version: 2.3.0
   dashboards:
     enable: true
     basePath: "/kibana"
     version: 2.3.0
-    replicas: 1
+    replicas: 2
     resources:
       requests:
          memory: "512Mi"
