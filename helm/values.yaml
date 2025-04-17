@@ -1,7 +1,10 @@
 # OpenSearchCluster configuration
-cluster:
-  # -- OpenSearchCluster name, by default release name is used
-  name: "lvopensearch"
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchCluster
+metadata:
+  name: lvopensearch
+  namespace: opensearch
+spec:
   general:
     serviceName: lvopensearch
     version: 2.3.0
