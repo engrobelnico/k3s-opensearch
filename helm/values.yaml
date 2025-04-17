@@ -5,6 +5,8 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
+    additionalConfig:
+      plugins.security.ssl.transport.enforce_hostname_verification: false
   dashboards:
     enable: true
     version: 2.3.0
