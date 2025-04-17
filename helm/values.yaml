@@ -5,9 +5,6 @@ cluster:
   general:
     serviceName: lvopensearch
     version: 2.3.0
-    additionalConfig:
-      plugins.security.disabled: "true"
-      plugins.security.ssl.transport.enforce_hostname_verification: "false"
   dashboards:
     enable: true
     basePath: "/kibana"
@@ -24,10 +21,6 @@ cluster:
       enable: false
     opensearchCredentialsSecret:
       name: opensearch-admin-password
-    additionalConfig:
-      # https://opensearch.org/docs/latest/install-and-configure/install-dashboards/tls/
-      opensearch.ssl.verificationMode: "none"
-      dashboards.tls.enable: "false"
   nodePools:
     - component: nodes
       replicas: 3
