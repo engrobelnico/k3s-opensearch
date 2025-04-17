@@ -10,7 +10,7 @@ opensearch-cluster:
       enable: true
       basePath: "/kibana"
       version: 2.3.0
-      replicas: 2
+      replicas: 1
       resources:
         requests:
           memory: "512Mi"
@@ -22,3 +22,17 @@ opensearch-cluster:
         enable: false
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
+    nodePools:
+      - component: masters
+        diskSize: "5Gi"
+        replicas: 3
+        roles:
+          - "master"
+          - "data"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
