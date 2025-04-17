@@ -23,16 +23,16 @@ opensearch-cluster:
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
     nodePools:
-      - component: masters
-        diskSize: "5Gi"
-        replicas: 3
-        roles:
-          - "master"
-          - "data"
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "200m"
-          limits:
-            memory: "512Mi"
-            cpu: "200m"
+    - component: masters
+      diskSize: "5Gi"
+      replicas: 3
+      roles:
+        - "master"
+        - "data"
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "500m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
