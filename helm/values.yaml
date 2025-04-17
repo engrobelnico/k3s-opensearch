@@ -9,6 +9,7 @@ cluster:
       plugins.security.ssl.transport.enforce_hostname_verification: false
   dashboards:
     enable: true
+    basePath: "/kibana"
     version: 2.3.0
     replicas: 1
     resources:
