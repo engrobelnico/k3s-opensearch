@@ -1,4 +1,1 @@
 # OpenSearchCluster configuration
-cluster:
-  # -- OpenSearchCluster name, by default release name is used
-  name: "opensearch"
