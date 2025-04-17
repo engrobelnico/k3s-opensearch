@@ -2,9 +2,9 @@ opensearch-cluster:
   # OpenSearchCluster configuration
   cluster:
     # -- OpenSearchCluster name, by default release name is used
-    name: "lvopensearch"
+    name: "opensearch"
     general:
-      serviceName: "lvopensearch"
+      serviceName: "opensearch"
       version: 2.3.0
     dashboards:
       enable: true
