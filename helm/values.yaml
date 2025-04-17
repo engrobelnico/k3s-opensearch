@@ -1,38 +1,39 @@
-# OpenSearchCluster configuration
-cluster:
-  # -- OpenSearchCluster name, by default release name is used
-  name: "lvopensearch"
-  general:
-    serviceName: "lvopensearch"
-    version: 2.3.0
-  dashboards:
-    enable: true
-    basePath: "/kibana"
-    version: 2.3.0
-    replicas: 2
-    resources:
-      requests:
-         memory: "512Mi"
-         cpu: "200m"
-      limits:
-         memory: "512Mi"
-         cpu: "200m"
-    tls:
-      enable: false
-    opensearchCredentialsSecret:
-      name: "opensearch-admin-password"
-  nodePools:
-    - component: nodes
-      replicas: 3
-      diskSize: "5Gi"
-      nodeSelector:
+opensearch-cluster:
+  # OpenSearchCluster configuration
+  cluster:
+    # -- OpenSearchCluster name, by default release name is used
+    name: "lvopensearch"
+    general:
+      serviceName: "lvopensearch"
+      version: 2.3.0
+    dashboards:
+      enable: true
+      basePath: "/kibana"
+      version: 2.3.0
+      replicas: 2
       resources:
-         requests:
-            memory: "512Mi"
-            cpu: "200m"
-         limits:
-            memory: "512Mi"
-            cpu: "200m"
-      roles:
-        - "cluster_manager"
-        - "data"
+        requests:
+          memory: "512Mi"
+          cpu: "200m"
+        limits:
+          memory: "512Mi"
+          cpu: "200m"
+      tls:
+        enable: false
+      opensearchCredentialsSecret:
+        name: "opensearch-admin-password"
+    nodePools:
+      - component: nodes
+        replicas: 3
+        diskSize: "5Gi"
+        nodeSelector:
+        resources:
+          requests:
+              memory: "512Mi"
+              cpu: "200m"
+          limits:
+              memory: "512Mi"
+              cpu: "200m"
+        roles:
+          - "cluster_manager"
+          - "data"
