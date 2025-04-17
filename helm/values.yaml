@@ -22,18 +22,3 @@ opensearch-cluster:
         enable: false
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
-    nodePools:
-      - component: nodes
-        replicas: 3
-        diskSize: "5Gi"
-        nodeSelector:
-        resources:
-          requests:
-              memory: "512Mi"
-              cpu: "200m"
-          limits:
-              memory: "512Mi"
-              cpu: "200m"
-        roles:
-          - "cluster_manager"
-          - "data"
