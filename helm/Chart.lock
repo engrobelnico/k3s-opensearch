@@ -2,5 +2,8 @@ dependencies:
 - name: opensearch-cluster
   repository: https://opensearch-project.github.io/opensearch-k8s-operator
   version: 3.0.0
-digest: sha256:00826a724ca32a745542e794b8bb6847b116a505a8035abdeb0ad814579590f6
-generated: "2025-03-05T17:16:20.082513533+01:00"
+- name: data-prepper
+  repository: https://opensearch-project.github.io/helm-charts/
+  version: 0.3.1
+digest: sha256:7bd43b2304682f8e23700b52fbbbf228cd8e0de151941e23806ed062bfbbd69f
+generated: "2025-05-14T16:16:56.816110376+02:00"
