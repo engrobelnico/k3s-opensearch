@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: data-prepper
+  name: data-prepper-config
+data:
+  pipelines.yaml:  |
+    entry-pipeline:
+      source:
+        otel_trace_source:
+          ssl: false
+          authentication:
+            unauthenticated: {}
+      buffer:
+        bounded_blocking:
+          buffer_size: 10240
+          batch_size: 160
+      sink:
+        - pipeline:
+            name: "raw-trace-pipeline"
+        - pipeline:
+            name: "service-map-pipeline"
+
+    raw-trace-pipeline:
+      source:
+        pipeline:
+          name: "entry-pipeline"
+      buffer:
+        bounded_blocking:
+          buffer_size: 10240
+          batch_size: 160
+      processor:
+        - otel_trace_raw: {}
+        - otel_trace_group: {} # Removed invalid 'hosts' parameter
+      sink:
+        - opensearch:
+            hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
+            insecure: true
+            index_type: trace-analytics-raw
+
+    service-map-pipeline:
+      source:
+        pipeline:
+          name: "entry-pipeline"
+      buffer:
+        bounded_blocking:
+          buffer_size: 10240
+          batch_size: 160
+      processor:
+        - service_map_stateful: {}
+      sink:
+        - opensearch:
+            hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
+            insecure: true
+            index_type: trace-analytics-service-map
+
+# The EOF marker from the original snippet is not part of the YAML content.

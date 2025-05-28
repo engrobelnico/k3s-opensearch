@@ -1,5 +1,7 @@
 # opensearch deploy on k3s
 
+helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+
 helm repo list | grep opensearch
 
 sudo kubectl apply --namespace=opensearch -f helm/templates/cluster.yaml
