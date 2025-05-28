@@ -55,16 +55,16 @@ opentelemetry-collector:
     receivers:
         otlp:
             protocols:
-            http:
-                endpoint: 0.0.0.0:4318
-                cors: # Added for explicitness, though defaults might apply
-                allowed_origins:
-                    - "*"
-                allowed_headers:
-                    - "*"
-                max_age: 7200
-            grpc:
-                endpoint: 0.0.0.0:4317
+              http:
+                  endpoint: 0.0.0.0:4318
+                  cors: # Added for explicitness, though defaults might apply
+                  allowed_origins:
+                      - "*"
+                  allowed_headers:
+                      - "*"
+                  max_age: 7200
+              grpc:
+                  endpoint: 0.0.0.0:4317
         zipkin:
 
     processors:
