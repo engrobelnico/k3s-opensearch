@@ -45,8 +45,8 @@ data-prepper:
 opentelemetry-collector:
   mode: daemonset
   image:
-    repository: "harbor.vuitton.net/expertise/shared/opentelemetry-collector-contrib"
-    tag: "0.123.0"
+    repository: "otel/opentelemetry-collector-contrib"
+    tag: "0.127.0"
   presets:
     logsCollection:
       enabled: true
