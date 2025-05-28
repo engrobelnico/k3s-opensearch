@@ -43,7 +43,7 @@ data-prepper:
   existingConfigmap: "data-prepper-config"
 
 opentelemetry-collector:
-  #mode: daemonset
+  mode: deployment
   image:
     repository: "otel/opentelemetry-collector-contrib"
     tag: "0.127.0"
