@@ -47,6 +47,29 @@ opentelemetry-collector:
   image:
     repository: "otel/opentelemetry-collector-contrib"
     tag: "0.127.0"
+  # This section defines which ports will be opened on the Kubernetes Service
+  # created for the OpenTelemetry Collector.
+  ports:
+    otlp-grpc: # OTLP gRPC receiver
+      enabled: true
+      name: otlp-grpc # Name for the service port
+      port: 4317      # Port the service will listen on
+      protocol: TCP
+      # targetPort: 4317 # Port on the pod, defaults to 'port' or resolved by name
+      # appProtocol: grpc # Optional: for Kubernetes 1.19+
+    otlp: # OTLP HTTP receiver
+      enabled: true
+      name: otlp # Name for the service port (often 'otlp-http')
+      port: 4318   # Port the service will listen on
+      protocol: TCP
+      # targetPort: 4318
+      # appProtocol: http
+    zipkin: # Zipkin receiver
+      enabled: true
+      name: zipkin
+      port: 9411
+      protocol: TCP
+      # targetPort: 9411
   presets:
     logsCollection:
       enabled: true
