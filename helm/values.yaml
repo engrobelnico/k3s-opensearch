@@ -46,6 +46,7 @@ opentelemetry-collector:
   mode: daemonset
   image:
     repository: "harbor.vuitton.net/observability/opentelemetry-collector-contrib"
+    tag: "0.92.0"
   presets:
     logsCollection:
       enabled: true
