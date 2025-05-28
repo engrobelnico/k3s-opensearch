@@ -54,28 +54,37 @@ opentelemetry-collector:
             protocols:
             http:
                 endpoint: 0.0.0.0:4318
-                cors:
+                cors: # Added for explicitness, though defaults might apply
                 allowed_origins:
                     - "*"
                 allowed_headers:
                     - "*"
                 max_age: 7200
+            grpc:
+                endpoint: 0.0.0.0:4317
         zipkin:
 
     processors:
         batch/traces:
             timeout: 1s
             send_batch_size: 50
+        batch/logs:
+            timeout: 1s
+            send_batch_size: 100
 
     exporters:
         otlp/data-prepper:
-            endpoint: dataprepper.prometheus.svc.cluster.local:21890
+            endpoint: opensearch-data-prepper.opensearch.svc.cluster.local:21890
             tls:
             insecure: true
 
     service:
         pipelines:
             traces:
-            receivers: [otlp, zipkin]
-            processors: [batch/traces]
-            exporters: [otlp/data-prepper]
+              receivers: [otlp, zipkin]
+              processors: [batch/traces]
+              exporters: [otlp/data-prepper]
+            logs:
+              receivers: [otlp]
+              processors: [batch/logs]
+              exporters: [otlp/data-prepper]
