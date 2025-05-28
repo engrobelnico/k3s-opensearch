@@ -1,0 +1,31 @@
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchISMPolicy
+metadata:
+   name: simple-policy
+   namespace: opensearch
+spec:
+   opensearchCluster:
+      name: opensearch
+   description: simple policy
+   policyId: simple-policy
+   defaultState: hot
+   states:
+      - name: hot
+        actions:
+           - replicaCount:
+                numberOfReplicas: 4
+        transitions:
+           - stateName: warm
+             conditions:
+                minIndexAge: "10d"
+      - name: warm
+        actions:
+           - replicaCount:
+                numberOfReplicas: 2
+        transitions:
+           - stateName: delete
+             conditions:
+                minIndexAge: "30d"
+      - name: delete
+        actions:
+           - delete: {}
