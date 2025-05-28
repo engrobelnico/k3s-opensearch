@@ -45,7 +45,7 @@ data-prepper:
 opentelemetry-collector:
   mode: daemonset
   image:
-    repository: "otel/opentelemetry-collector"
+    repository: "ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-k8s"
   presets:
     logsCollection:
       enabled: true
