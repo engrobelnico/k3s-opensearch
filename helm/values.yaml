@@ -70,10 +70,7 @@ opentelemetry-collector:
       servicePort: 9411
       hostPort: 9411
       protocol: TCP
-  presets:
-    logsCollection:
-      enabled: true
-      includeCollectorLogs: true
+  
   config:
     receivers:
         otlp:
@@ -95,9 +92,6 @@ opentelemetry-collector:
         batch/traces:
             timeout: 1s
             send_batch_size: 50
-        batch/logs:
-            timeout: 1s
-            send_batch_size: 100
 
     exporters:
         otlp/data-prepper:
@@ -110,8 +104,4 @@ opentelemetry-collector:
             traces:
               receivers: [otlp, zipkin]
               processors: [batch/traces]
-              exporters: [otlp/data-prepper]
-            logs:
-              receivers: [otlp]
-              processors: [batch/logs]
               exporters: [otlp/data-prepper]
