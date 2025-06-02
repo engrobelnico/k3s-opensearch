@@ -7,6 +7,7 @@ metadata:
 data:
   pipelines.yaml:  |
     entry-pipeline:
+      delay: "100"
       source:
         otel_trace_source:
           ssl: false
@@ -23,6 +24,7 @@ data:
             name: "service-map-pipeline"
 
     raw-trace-pipeline:
+      delay: "100"
       source:
         pipeline:
           name: "entry-pipeline"
@@ -56,6 +58,7 @@ data:
             index_type: trace-analytics-service-map
 
     logs-pipeline:
+      delay: "100"
       source:
         otel_log_source:
           # This source listens for OTLP log data.
