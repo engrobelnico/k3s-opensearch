@@ -98,6 +98,7 @@ opentelemetry-collector:
             endpoint: opensearch-data-prepper.opensearch.svc.cluster.local:21890
             tls:
               insecure: true
+              insecure_skip_verify: true
 
     service:
         pipelines:
