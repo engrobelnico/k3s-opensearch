@@ -2,7 +2,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: lvopensearch
-  namespace: prometheus
+  namespace: opensearch
   annotations:
     # spec.ingressClassName: traefik # This was an incorrect placement for ingressClassName
     traefik.ingress.kubernetes.io/router.entrypoints: web
