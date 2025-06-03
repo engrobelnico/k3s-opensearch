@@ -76,7 +76,7 @@ data-prepper:
             - otel_traces: {}
           sink:
             - opensearch:
-                hosts: ["http://opensearch-masters.opensearch-masters.svc.cluster.local:9200"]
+                hosts: ["http://opensearch.opensearch.svc.cluster.local:9200"]
                 username: "admin"
                 password: "admin"
                 insecure: true
@@ -94,7 +94,7 @@ data-prepper:
             - service_map: {}
           sink:
             - opensearch:
-                hosts: ["http://opensearch-masters.opensearch-masters.svc.cluster.local:9200"]
+                hosts: ["http://opensearch.opensearch.svc.cluster.local:9200"]
                 username: "admin"
                 password: "admin"
                 insecure: true
