@@ -41,11 +41,8 @@ data-prepper:
   # Tells the data-prepper sub-chart to use an existing ConfigMap
   # for its pipeline configurations.
   config:
-   data-prepper-config.yaml: |
-    ssl: false
-  # -- Main Data Prepper configuration file content
-  pipelineConfig:
-     config:
+    # Main Data Prepper configuration file content
+    # This content will be mounted as a config file for Data Prepper
       entry-pipeline:
         delay: "100"
         source:
