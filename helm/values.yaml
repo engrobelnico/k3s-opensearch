@@ -78,6 +78,8 @@ data-prepper:
             - opensearch:
                 hosts: ["https://opensearch.opensearch.svc.cluster.local:9200"]
                 insecure: true
+                username: "admin"
+                password: "admin"
                 index_type: trace-analytics-raw
 
         service-map-pipeline:
@@ -93,7 +95,10 @@ data-prepper:
           sink:
             - opensearch:
                 hosts: ["https://opensearch.opensearch.svc.cluster.local:9200"]
+                # The insecure option is used here for simplicity, but in production,
                 insecure: true
+                username: "admin"
+                password: "admin"
                 index_type: trace-analytics-service-map
 
 opentelemetry-collector:
