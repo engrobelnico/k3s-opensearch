@@ -144,8 +144,8 @@ opentelemetry-collector:
             send_batch_size: 50
 
     exporters:
-        logging:
-            logLevel: debug
+        debug:
+            log_level: debug
         otlp/data-prepper:
             endpoint: opensearch-data-prepper.opensearch.svc.cluster.local:21890
             tls:
