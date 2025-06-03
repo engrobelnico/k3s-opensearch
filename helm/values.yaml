@@ -83,8 +83,6 @@ opentelemetry-collector:
                     allowed_headers:
                         - "*"
                     max_age: 7200
-              grpc:
-                  endpoint: 0.0.0.0:4317
         zipkin:
             endpoint: 0.0.0.0:9411
 
