@@ -136,7 +136,10 @@ opentelemetry-collector:
     receivers:
         otlp:
             protocols:
-              http: {}
+              http: 
+                cors:
+                  allowed_origins:
+                    - https://kube.local
               grpc: {} 
         zipkin: {}
 
