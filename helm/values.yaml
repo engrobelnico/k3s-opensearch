@@ -45,6 +45,7 @@ data-prepper:
     ssl: false
   # -- Main Data Prepper configuration file content
   pipelineConfig:
+     config:
       entry-pipeline:
         delay: "100"
         source:
