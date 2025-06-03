@@ -77,6 +77,8 @@ data-prepper:
           sink:
             - opensearch:
                 hosts: ["http://opensearch-masters.opensearch-masters.svc.cluster.local:9200"]
+                username: "admin"
+                password: "admin"
                 insecure: true
                 index_type: trace-analytics-raw
 
@@ -93,6 +95,8 @@ data-prepper:
           sink:
             - opensearch:
                 hosts: ["http://opensearch-masters.opensearch-masters.svc.cluster.local:9200"]
+                username: "admin"
+                password: "admin"
                 insecure: true
                 index_type: trace-analytics-service-map
 
