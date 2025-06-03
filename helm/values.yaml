@@ -76,7 +76,7 @@ data-prepper:
             - otel_traces: {}
           sink:
             - opensearch:
-                hosts: ["opensearch.opensearch.svc.cluster.local:9200"]
+                hosts: ["https://opensearch.opensearch.svc.cluster.local:9200"]
                 insecure: true
                 index_type: trace-analytics-raw
 
@@ -92,7 +92,7 @@ data-prepper:
             - service_map: {}
           sink:
             - opensearch:
-                hosts: ["opensearch.opensearch.svc.cluster.local:9200"]
+                hosts: ["https://opensearch.opensearch.svc.cluster.local:9200"]
                 insecure: true
                 index_type: trace-analytics-service-map
 
