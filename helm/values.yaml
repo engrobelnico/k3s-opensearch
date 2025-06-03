@@ -134,12 +134,9 @@ opentelemetry-collector:
     receivers:
         otlp:
             protocols:
-              http:
-                  endpoint: ${env:MY_POD_IP}:4318
-              grpc:   
-                  endpoint: ${env:MY_POD_IP}:4317
-        zipkin:
-            endpoint: ${env:MY_POD_IP}:9411
+              http: {}
+              grpc: {} 
+        zipkin: {}
 
     processors:
         batch/traces:
