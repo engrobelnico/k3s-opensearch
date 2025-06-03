@@ -145,7 +145,6 @@ opentelemetry-collector:
 
     exporters:
         debug:
-            log_level: debug
         otlp/data-prepper:
             endpoint: opensearch-data-prepper.opensearch.svc.cluster.local:21890
             tls:
