@@ -156,6 +156,6 @@ opentelemetry-collector:
             traces:
               receivers: [otlp, zipkin]
               processors: [batch/traces]
-              exporters: [otlp/data-prepper]
+              exporters: [debug,otlp/data-prepper]
             metrics: null
             logs: null
