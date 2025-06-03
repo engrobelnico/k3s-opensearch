@@ -40,59 +40,60 @@ opensearch-cluster:
 data-prepper:
   # Tells the data-prepper sub-chart to use an existing ConfigMap
   # for its pipeline configurations.
-  config:
-    pipelines.yaml: |
-      # Main Data Prepper configuration file content
-      # This content will be mounted as pipelines.yaml in the ConfigMap
-      entry-pipeline:
-        delay: "100"
-        source:
-          otel_trace_source:
-            ssl: false
-            authentication:
-              unauthenticated: {}
-        buffer:
-          bounded_blocking:
-            buffer_size: 10240
-            batch_size: 160
-        sink:
-          - pipeline:
-              name: "raw-trace-pipeline"
-          - pipeline:
-              name: "service-map-pipeline"
+  pipelineConfig:
+    config:
+      pipelines.yaml: |
+        # Main Data Prepper configuration file content
+        # This content will be mounted as pipelines.yaml in the ConfigMap
+        entry-pipeline:
+          delay: "100"
+          source:
+            otel_trace_source:
+              ssl: false
+              authentication:
+                unauthenticated: {}
+          buffer:
+            bounded_blocking:
+              buffer_size: 10240
+              batch_size: 160
+          sink:
+            - pipeline:
+                name: "raw-trace-pipeline"
+            - pipeline:
+                name: "service-map-pipeline"
 
-      raw-trace-pipeline:
-        delay: "100"
-        source:
-          pipeline:
-            name: "entry-pipeline"
-        buffer:
-          bounded_blocking:
-            buffer_size: 10240
-            batch_size: 160
-        processor:
-          - otel_traces: {}
-        sink:
-          - opensearch:
-              hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
-              insecure: true
-              index_type: trace-analytics-raw
+        raw-trace-pipeline:
+          delay: "100"
+          source:
+            pipeline:
+              name: "entry-pipeline"
+          buffer:
+            bounded_blocking:
+              buffer_size: 10240
+              batch_size: 160
+          processor:
+            - otel_traces: {}
+          sink:
+            - opensearch:
+                hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
+                insecure: true
+                index_type: trace-analytics-raw
 
-      service-map-pipeline:
-        source:
-          pipeline:
-            name: "entry-pipeline"
-        buffer:
-          bounded_blocking:
-            buffer_size: 10240
-            batch_size: 160
-        processor:
-          - service_map: {}
-        sink:
-          - opensearch:
-              hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
-              insecure: true
-              index_type: trace-analytics-service-map
+        service-map-pipeline:
+          source:
+            pipeline:
+              name: "entry-pipeline"
+          buffer:
+            bounded_blocking:
+              buffer_size: 10240
+              batch_size: 160
+          processor:
+            - service_map: {}
+          sink:
+            - opensearch:
+                hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
+                insecure: true
+                index_type: trace-analytics-service-map
 
 opentelemetry-collector:
   mode: deployment
