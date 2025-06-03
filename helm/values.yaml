@@ -40,9 +40,10 @@ opensearch-cluster:
 data-prepper:
   # Tells the data-prepper sub-chart to use an existing ConfigMap
   # for its pipeline configurations.
-  config: |
-    # Main Data Prepper configuration file content
-    # This content will be mounted as a config file for Data Prepper
+  config:
+    pipelines.yaml: |
+      # Main Data Prepper configuration file content
+      # This content will be mounted as pipelines.yaml in the ConfigMap
       entry-pipeline:
         delay: "100"
         source:
