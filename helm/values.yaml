@@ -139,7 +139,7 @@ opentelemetry-collector:
               http: 
                 cors:
                   allowed_origins:
-                    - https://kube.local
+                    - http://kube.local
               grpc: {} 
         zipkin: {}
 
