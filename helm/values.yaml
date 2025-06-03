@@ -81,6 +81,7 @@ data-prepper:
                 username: "admin"
                 password: "admin"
                 index_type: trace-analytics-raw
+            - stdout: {}
 
         service-map-pipeline:
           source:
@@ -100,6 +101,7 @@ data-prepper:
                 username: "admin"
                 password: "admin"
                 index_type: trace-analytics-service-map
+            - stdout: {}
 
 opentelemetry-collector:
   mode: deployment
