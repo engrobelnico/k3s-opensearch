@@ -38,8 +38,6 @@ data:
         - opensearch:
             hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
             insecure: true
-            username: "admin"
-            password: "admin"
             index_type: trace-analytics-raw
 
     service-map-pipeline:
@@ -56,8 +54,6 @@ data:
         - opensearch:
             hosts: ["http://opensearch-masters.opensearch.svc.cluster.local:9200"]
             insecure: true
-            username: "admin"
-            password: "admin"
             index_type: trace-analytics-service-map
 
 # The EOF marker from the original snippet is not part of the YAML content.
