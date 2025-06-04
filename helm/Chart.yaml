@@ -1,5 +1,5 @@
 apiVersion: v2
-name: lvm-opensearch
+name: opensearch
 description: A Helm chart for Kubernetes to deploy opensearch
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -27,9 +27,3 @@ dependencies:
 - name: opensearch-cluster
   version: 3.0.0
   repository: https://opensearch-project.github.io/opensearch-k8s-operator
-- name: data-prepper
-  version: 0.3.1
-  repository: https://opensearch-project.github.io/helm-charts/
-- name: opentelemetry-collector
-  version: 0.125.0
-  repository: https://open-telemetry.github.io/opentelemetry-helm-charts
