@@ -6,5 +6,5 @@ metadata:
 spec:
   stripPrefix:
     prefixes:
-      - /kiabana
+      - /kibana
     # forceSlash: false # Defaults to true, usually fine. Set to false if issues with trailing slashes.
