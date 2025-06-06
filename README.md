@@ -1,7 +1,5 @@
 # opensearch deploy on k3s
 
-helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-
 helm repo list | grep opensearch
 
 sudo kubectl apply --namespace=opensearch -f helm/templates/cluster.yaml
@@ -15,3 +13,9 @@ argocd app terminate-op opensearch
 https://artifacthub.io/packages/helm/opensearch-operator/opensearch-cluster
 
 https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/charts/opensearch-cluster/values.yaml
+
+# update standard user
+https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/docs/userguide/main.md#custom-admin-user
+
+echo -n 'MyNewSecurePassword123!' | base64 -w 0
+kctl patch secret opensearch-admin-password -n opensearch -p='{"data": "password":"TXlOZXdTZWN1cmVQYXNzd29yZDEyMyE="}}'
