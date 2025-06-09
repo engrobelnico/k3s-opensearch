@@ -17,5 +17,5 @@ https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/charts/o
 # update standard user
 https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/docs/userguide/main.md#custom-admin-user
 
-echo -n 'MyNewSecurePassword123!' | base64 -w 0
-kctl patch secret opensearch-admin-password -n opensearch -p='{"data": "password":"TXlOZXdTZWN1cmVQYXNzd29yZDEyMyE="}}'
+echo -n 'admin' | base64 -w 0
+kctl patch secret opensearch-admin-password -n opensearch -p='{"data": {"password":"YWRtaW4="}}'
