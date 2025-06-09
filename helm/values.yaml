@@ -12,7 +12,6 @@ opensearch-cluster:
           serviceMonitorSelector: prometheus
           release: prometheus
         tlsConfig:
-          enable: false
           insecureSkipVerify: true
     dashboards:
       enable: true
