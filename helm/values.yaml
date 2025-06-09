@@ -8,6 +8,9 @@ opensearch-cluster:
       version: 2.3.0
       monitoring:
         enable: true
+        labels:
+          serviceMonitorSelector: prometheus
+          release: prometheus
     dashboards:
       enable: true
       basePath: "/kibana"
