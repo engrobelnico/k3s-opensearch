@@ -6,6 +6,8 @@ opensearch-cluster:
     general:
       serviceName: "opensearch"
       version: 2.3.0
+      monitoring:
+        enable: true
     dashboards:
       enable: true
       basePath: "/kibana"
