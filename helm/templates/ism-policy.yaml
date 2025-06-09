@@ -1,0 +1,22 @@
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchISMPolicy
+metadata:
+   name: sample-policy
+spec:
+   opensearchCluster:
+      name: opensearch
+   description: Sample Delete policy
+   policyId: sample-delete-policy
+   defaultState: hot
+   states:
+      - name: hot
+        actions:
+           - replicaCount:
+                numberOfReplicas: 4
+        transitions:
+           - stateName: delete
+             conditions:
+                minIndexAge: "10d"
+      - name: delete
+        actions:
+           - delete: {}
