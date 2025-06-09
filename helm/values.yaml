@@ -11,6 +11,9 @@ opensearch-cluster:
         labels:
           serviceMonitorSelector: prometheus
           release: prometheus
+        tlsConfig:
+          enable: false
+          insecureSkipVerify: true
     dashboards:
       enable: true
       basePath: "/kibana"
