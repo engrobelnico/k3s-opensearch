@@ -5,7 +5,7 @@ opensearch-cluster:
     name: "opensearch"
     general:
       serviceName: "opensearch"
-      version: 2.7.0
+      version: 2.19.2
       # monitoring:
       #   enable: false
       #   labels:
@@ -16,7 +16,7 @@ opensearch-cluster:
     dashboards:
       enable: true
       basePath: "/kibana"
-      version: 2.7.0
+      version: 2.19.2
       replicas: 1
       resources:
         requests:
