@@ -7,7 +7,7 @@ opensearch-cluster:
       serviceName: "opensearch"
       version: 2.19.2
       monitoring:
-        enable: true
+        enable: false
         labels:
           serviceMonitorSelector: prometheus
           release: prometheus
