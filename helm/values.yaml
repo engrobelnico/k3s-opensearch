@@ -6,13 +6,13 @@ opensearch-cluster:
     general:
       serviceName: "opensearch"
       version: 2.19.2
-      # monitoring:
-      #   enable: false
-      #   labels:
-      #     serviceMonitorSelector: prometheus
-      #     release: prometheus
-      #   tlsConfig:
-      #     insecureSkipVerify: true
+      monitoring:
+        enable: false
+        labels:
+          serviceMonitorSelector: prometheus
+          release: prometheus
+        tlsConfig:
+          insecureSkipVerify: true
     dashboards:
       enable: true
       basePath: "/kibana"
