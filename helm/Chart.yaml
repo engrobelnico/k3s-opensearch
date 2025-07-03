@@ -25,5 +25,5 @@ appVersion: "1.0.0"
 
 dependencies:
 - name: opensearch-cluster
-  version: 3.0.0
+  version: 3.1.0
   repository: https://opensearch-project.github.io/opensearch-k8s-operator
