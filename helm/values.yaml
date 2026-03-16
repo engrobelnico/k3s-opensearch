@@ -5,7 +5,7 @@ opensearch-cluster:
     name: "opensearch"
     general:
       serviceName: "opensearch"
-      version: 3.4.0
+      version: 3.5.0
       monitoring:
         enable: false
         labels:
@@ -16,7 +16,7 @@ opensearch-cluster:
     dashboards:
       enable: true
       basePath: "/kibana"
-      version: 3.4.0
+      version: 3.5.0
       replicas: 1
       resources:
         requests:
@@ -43,4 +43,11 @@ opensearch-cluster:
         limits:
           memory: "1Gi"
           cpu: "500m"
-
+# Disable deprecated sample ISM policy
+    security:
+      config:
+        securityConfigSecret:
+          name: ""
+  # Disable sample ISM policy using new API group
+  samplePolicy:
+    enabled: false
