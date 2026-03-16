@@ -47,9 +47,3 @@ opensearch-cluster:
       config:
         securityConfigSecret:
           name: ""
-  # Disable sample ISM policy using new API group
-  samplePolicy:
-    enabled: false
-  # Disable legacy ISM policy to avoid webhook API deprecation error
-  ismPolicy:
-    enabled: false
