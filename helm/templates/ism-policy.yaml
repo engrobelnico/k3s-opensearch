@@ -3,22 +3,20 @@ kind: OpenSearchISMPolicy
 metadata:
    name: sample-policy
 spec:
-   opensearchRef:
+   opensearchCluster:
       name: opensearch
    policyId: sample-delete-policy
-   policy:
-     description: Sample Delete policy
-     default_state: hot
-     states:
-        - name: hot
-          actions:
-             - replica_count:
-                  number_of_replicas: 4
-          transitions:
-             - state_name: delete
+   default_state: hot
+   states:
+      - name: hot
+         actions: 
+            - replica_count:
+               number_of_replicas: 4
+         transitions:
+            - state_name: delete
                conditions:
                   min_index_age: "10d"
-        - name: delete
-          actions:
-             - delete: {}
-          transitions: []
+      - name: delete
+         actions:
+            - delete: {}
+         transitions: []
