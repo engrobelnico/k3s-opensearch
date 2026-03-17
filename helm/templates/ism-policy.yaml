@@ -1,4 +1,4 @@
-apiVersion: opensearch.orgv1
+apiVersion: opensearch.org/v1
 kind: OpenSearchISMPolicy
 metadata:
    name: sample-policy
