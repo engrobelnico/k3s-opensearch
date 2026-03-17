@@ -7,7 +7,7 @@ spec:
       name: opensearch
    description: Sample policy
    policyId: sample-delete-policy
-   default_state: hot
+   defaultState: hot
    states:
       - name: hot
         actions: 
