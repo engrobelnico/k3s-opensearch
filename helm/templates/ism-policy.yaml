@@ -10,14 +10,14 @@ spec:
    default_state: hot
    states:
       - name: hot
-         actions: 
+        actions: 
             - replica_count:
                number_of_replicas: 4
-         transitions:
+        transitions:
             - state_name: delete
               conditions:
                   min_index_age: "10d"
       - name: delete
-         actions:
+        actions:
             - delete: {}
-         transitions: []
+        transitions: []
