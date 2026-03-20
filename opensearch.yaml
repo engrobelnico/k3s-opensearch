@@ -17,6 +17,15 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: opensearch
+  ignoreDifferences:
+    - group: opensearch.org
+      kind: OpenSearchCluster
+      managedFieldsManagers:
+        - opensearch-operator
+    - group: opensearch.org
+      kind: OpenSearchISMPolicy
+      managedFieldsManagers:
+        - opensearch-operator
   syncPolicy:
     automated:
       prune: true
@@ -31,3 +40,4 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
       - PruneLast=true
+      - RespectIgnoreDifferences=true
