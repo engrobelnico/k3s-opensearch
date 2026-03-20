@@ -10,7 +10,7 @@ helm install lvopensearch --namespace=opensearch -f values.yaml opensearch-opera
 argocd app delete opensearch --cascade
 argocd app terminate-op opensearch
 
-sudo kubectl patch application/opensearch --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]' -n argocd
+kctl patch application/opensearch --type json --patch='[ { "op": "remove", "path": "/metadata/finalizers" } ]' -n argocd
 
 https://artifacthub.io/packages/helm/opensearch-operator/opensearch-cluster
 

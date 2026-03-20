@@ -22,10 +22,19 @@ spec:
       kind: OpenSearchCluster
       managedFieldsManagers:
         - opensearch-operator
+        - manager
+      jqPathExpressions:
+        - .spec.general.httpPort
+        - .spec.general.setVMMaxMapCount
+        - .spec.general.drainDataNodes
+        - .spec.general.pluginsList
+        - .spec.dashboards.additionalConfig
+        - .spec.dashboards.env
     - group: opensearch.org
       kind: OpenSearchISMPolicy
       managedFieldsManagers:
         - opensearch-operator
+        - manager
   syncPolicy:
     automated:
       prune: true

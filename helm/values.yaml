@@ -44,6 +44,4 @@ opensearch-cluster:
           memory: "1Gi"
           cpu: "500m"
     security:
-      config:
-        securityConfigSecret:
-          name: ""
+      config: {}
