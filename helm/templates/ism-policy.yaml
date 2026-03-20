@@ -10,9 +10,9 @@ spec:
    defaultState: hot
    states:
       - name: hot
-        actions: 
+        actions:
             - replicaCount:
-               numberOfReplicas: 4
+                numberOfReplicas: 4
         transitions:
             - stateName: delete
               conditions:

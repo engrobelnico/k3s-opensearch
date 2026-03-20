@@ -35,6 +35,8 @@ spec:
       managedFieldsManagers:
         - opensearch-operator
         - manager
+      jqPathExpressions:
+        - .spec.states
   syncPolicy:
     automated:
       prune: true
