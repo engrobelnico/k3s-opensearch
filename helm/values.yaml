@@ -6,6 +6,11 @@ opensearch-cluster:
     general:
       serviceName: "opensearch"
       version: 3.5.0
+      vendor: Opensearch
+      httpPort: 9200
+      setVMMaxMapCount: true
+      drainDataNodes: true
+      pluginsList: []
       monitoring:
         enable: false
         labels:
@@ -27,6 +32,7 @@ opensearch-cluster:
           cpu: "200m"
       tls:
         enable: false
+      additionalConfig: {}
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
     nodePools:
