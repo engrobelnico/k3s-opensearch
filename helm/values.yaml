@@ -38,7 +38,7 @@ opensearch-cluster:
         data_source.endpointDeniedIPs: "[]"
         data_source.list[0].name: "Prometheus"
         data_source.list[0].type: "prometheus"
-        data_source.list[0].url: "http://prometheus-operated.prometheus.svc.cluster.local:9090"
+        data_source.list[0].url: "http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090/prometheus"
         data_source.list[0].auth.type: "no_auth"
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
