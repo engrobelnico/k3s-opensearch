@@ -1,0 +1,74 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: osd-create-datasource
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: create-datasource
+          image: curlimages/curl:8.7.1
+          command:
+            - /bin/sh
+            - -c
+            - |
+              OSD_URL="http://opensearch-dashboards.{{ .Release.Namespace }}.svc.cluster.local:5601{{ index .Values "opensearch-cluster" "cluster" "dashboards" "basePath" | default "/kibana" }}"
+              USERNAME=$(cat /credentials/username)
+              PASSWORD=$(cat /credentials/password)
+              DS_NAME="Prometheus"
+              DS_URL="{{ index .Values "opensearch-cluster" "cluster" "dashboards" "additionalConfig" "data_source.list[0].url" }}"
+
+              echo "Waiting for OpenSearch Dashboards to be ready..."
+              until curl -sf -u "${USERNAME}:${PASSWORD}" "${OSD_URL}/api/status" -o /dev/null; do
+                sleep 10
+              done
+
+              echo "Checking if data source '${DS_NAME}' already exists..."
+              EXISTING=$(curl -sf -u "${USERNAME}:${PASSWORD}" \
+                "${OSD_URL}/api/saved_objects/_find?type=data-source&search_fields=title&search=${DS_NAME}" \
+                -H "osd-xsrf: true" | grep -o '"total":[0-9]*' | cut -d: -f2)
+
+              if [ "${EXISTING:-0}" -gt "0" ]; then
+                echo "Data source '${DS_NAME}' already exists. Skipping."
+                exit 0
+              fi
+
+              echo "Creating data source '${DS_NAME}'..."
+              RESULT=$(curl -sf -u "${USERNAME}:${PASSWORD}" \
+                -X POST "${OSD_URL}/api/saved_objects/data-source" \
+                -H "osd-xsrf: true" \
+                -H "Content-Type: application/json" \
+                -d "{
+                  \"attributes\": {
+                    \"title\": \"${DS_NAME}\",
+                    \"description\": \"Prometheus metrics\",
+                    \"endpoint\": \"${DS_URL}\",
+                    \"auth\": {
+                      \"type\": \"no_auth\",
+                      \"credentials\": null
+                    },
+                    \"dataSourceVersion\": \"\",
+                    \"installedPlugins\": []
+                  }
+                }")
+              echo "Result: ${RESULT}"
+              echo "Done."
+          volumeMounts:
+            - name: credentials
+              mountPath: /credentials
+              readOnly: true
+      volumes:
+        - name: credentials
+          secret:
+            secretName: opensearch-admin-password
+            items:
+              - key: username
+                path: username
+              - key: password
+                path: password
