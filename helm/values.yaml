@@ -5,7 +5,7 @@ opensearch-cluster:
     name: "opensearch"
     general:
       serviceName: "opensearch"
-      version: 3.5.0
+      version: 3.6.0
       vendor: Opensearch
       httpPort: 9200
       setVMMaxMapCount: true
@@ -21,7 +21,7 @@ opensearch-cluster:
     dashboards:
       enable: true
       basePath: "/kibana"
-      version: 3.5.0
+      version: 3.6.0
       replicas: 1
       resources:
         requests:
