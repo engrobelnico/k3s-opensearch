@@ -33,9 +33,7 @@ opensearch-cluster:
       tls:
         enable: false
       additionalConfig:
-        data_source.enabled: "true"
-        data_source.manageIndex: "true"
-        data_source.endpointDeniedIPs: "[]"
+        opensearch.ssl.verificationMode: none
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
     nodePools:
