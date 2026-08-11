@@ -1,0 +1,104 @@
+{{- if .Values.monitoring.exporter.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opensearch-exporter
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: opensearch-exporter
+spec:
+  replicas: {{ .Values.monitoring.exporter.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opensearch-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: opensearch-exporter
+    spec:
+      containers:
+      - name: opensearch-exporter
+        image: {{ .Values.monitoring.exporter.image }}
+        imagePullPolicy: {{ .Values.monitoring.exporter.imagePullPolicy }}
+        command:
+        - /bin/sh
+        - -ec
+        args:
+        - >-
+          exec elasticsearch_exporter
+          --web.listen-address=:{{ .Values.monitoring.exporter.service.targetPort }}
+          --es.uri={{ .Values.monitoring.exporter.opensearch.scheme }}://${ES_USERNAME}:${ES_PASSWORD}@{{ .Values.monitoring.exporter.opensearch.host }}:{{ .Values.monitoring.exporter.opensearch.port }}
+          --es.ssl-skip-verify={{ .Values.monitoring.exporter.opensearch.insecureSkipVerify }}
+          --es.all
+          --es.indices
+          --es.shards
+          --collector.snapshots
+        env:
+        - name: ES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.name }}
+              key: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.usernameKey }}
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.name }}
+              key: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.passwordKey }}
+        ports:
+        - name: metrics
+          containerPort: {{ .Values.monitoring.exporter.service.targetPort }}
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 20
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+{{ toYaml .Values.monitoring.exporter.resources | indent 10 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opensearch-exporter
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: opensearch-exporter
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: opensearch-exporter
+  ports:
+  - name: metrics
+    protocol: TCP
+    port: {{ .Values.monitoring.exporter.service.port }}
+    targetPort: {{ .Values.monitoring.exporter.service.targetPort }}
+{{- if .Values.monitoring.exporter.serviceMonitor.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opensearch-exporter
+  namespace: {{ .Values.monitoring.exporter.serviceMonitor.namespace }}
+  labels:
+{{ toYaml .Values.monitoring.exporter.serviceMonitor.labels | indent 4 }}
+spec:
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opensearch-exporter
+  endpoints:
+  - port: metrics
+    interval: {{ .Values.monitoring.exporter.serviceMonitor.interval }}
+    scrapeTimeout: {{ .Values.monitoring.exporter.serviceMonitor.scrapeTimeout }}
+    path: /metrics
+{{- end }}
+{{- end }}

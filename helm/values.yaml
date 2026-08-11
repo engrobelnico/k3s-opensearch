@@ -52,3 +52,37 @@ opensearch-cluster:
           cpu: "500m"
     security:
       config: {}
+
+monitoring:
+  exporter:
+    enabled: true
+    image: quay.io/prometheuscommunity/elasticsearch-exporter:v1.9.0
+    imagePullPolicy: IfNotPresent
+    replicas: 1
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+    opensearch:
+      scheme: https
+      host: opensearch.opensearch.svc.cluster.local
+      port: 9200
+      insecureSkipVerify: true
+      credentialsSecret:
+        name: opensearch-admin-password
+        usernameKey: username
+        passwordKey: password
+    service:
+      port: 9114
+      targetPort: 9114
+    serviceMonitor:
+      enabled: true
+      namespace: prometheus
+      interval: 30s
+      scrapeTimeout: 10s
+      labels:
+        serviceMonitorSelector: prometheus
+        release: prometheus
