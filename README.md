@@ -35,3 +35,6 @@ for crd in $(kubectl get crd -o name | grep opensearch); do
   kubectl get $resource -n opensearch -o json 2>/dev/null | \
     jq -r '.items[] | select(.metadata.finalizers != null) | .metadata.name + " -> " + (.metadata.finalizers | join(", "))'
 done
+
+# supprimer les PVC
+kctl delete pvc data-opensearch-masters-0 data-opensearch-masters-1 data-opensearch-masters-2 -n opensearch 2>&1 & sudo kubectl delete pod opensearch-masters-0 opensearch-masters-1 opensearch-masters-2 -n opensearch --force --grace-period=0 2>&1
