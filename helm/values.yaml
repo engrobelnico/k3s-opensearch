@@ -12,7 +12,7 @@ opensearch-cluster:
       drainDataNodes: true
       pluginsList: []
       monitoring:
-        enable: true
+        enable: false
         labels:
           serviceMonitorSelector: prometheus
           release: prometheus
