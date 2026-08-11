@@ -28,7 +28,11 @@ spec:
           exec elasticsearch_exporter
           --web.listen-address=:{{ .Values.monitoring.exporter.service.targetPort }}
           --es.uri={{ .Values.monitoring.exporter.opensearch.scheme }}://${ES_USERNAME}:${ES_PASSWORD}@{{ .Values.monitoring.exporter.opensearch.host }}:{{ .Values.monitoring.exporter.opensearch.port }}
-          --es.ssl-skip-verify={{ .Values.monitoring.exporter.opensearch.insecureSkipVerify }}
+          {{- if .Values.monitoring.exporter.opensearch.insecureSkipVerify }}
+          --es.ssl-skip-verify
+          {{- else }}
+          --no-es.ssl-skip-verify
+          {{- end }}
           --es.all
           --es.indices
           --es.shards
