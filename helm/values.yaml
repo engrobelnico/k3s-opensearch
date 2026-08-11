@@ -43,13 +43,19 @@ opensearch-cluster:
       roles:
         - "master"
         - "data"
+      probes:
+        startup:
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 30
+          failureThreshold: 30
       resources:
         requests:
           memory: "1Gi"
           cpu: "500m"
         limits:
           memory: "1Gi"
-          cpu: "500m"
+          cpu: "1000m"
     security:
       config: {}
 
