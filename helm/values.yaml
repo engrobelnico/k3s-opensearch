@@ -1,3 +1,11 @@
+# -- Credentials for the shared opensearch-admin-password secret, consumed by
+# the OpenSearch dashboards login, the datasource job and the exporter.
+# Override in production; only used to seed the secret on first install.
+adminCredentials:
+  secretName: "opensearch-admin-password"
+  username: admin
+  password: admin
+
 opensearch-cluster:
   # OpenSearchCluster configuration
   cluster:
@@ -39,7 +47,7 @@ opensearch-cluster:
     nodePools:
     - component: masters
       diskSize: "5Gi"
-      replicas: 3
+      replicas: 1
       roles:
         - "master"
         - "data"

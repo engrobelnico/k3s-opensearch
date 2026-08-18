@@ -19,8 +19,12 @@ https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/charts/o
 # update standard user
 https://github.com/opensearch-project/opensearch-k8s-operator/blob/main/docs/userguide/main.md#custom-admin-user
 
-echo -n 'admin' | base64 -w 0
-kctl patch secret opensearch-admin-password -n opensearch -p='{"data": {"password":"YWRtaW4="}}'
+# The opensearch-admin-password secret is now created by the helm chart itself
+# (helm/templates/admin-credentials-secret.yaml) from .Values.adminCredentials.
+# To rotate the password after install, patch the secret directly (the chart
+# preserves existing values on upgrade via `lookup`):
+echo -n 'newpassword' | base64 -w 0
+kctl patch secret opensearch-admin-password -n opensearch -p='{"data": {"password":"<base64>"}}'
 
 # Patcher pour vider les finalizers
 kctl get opensearchismpolicy sample-policy -n opensearch -o yaml

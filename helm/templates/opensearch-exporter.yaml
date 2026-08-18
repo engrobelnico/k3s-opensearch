@@ -41,12 +41,12 @@ spec:
         - name: ES_USERNAME
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.name }}
+              name: {{ .Values.adminCredentials.secretName }}
               key: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.usernameKey }}
         - name: ES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.name }}
+              name: {{ .Values.adminCredentials.secretName }}
               key: {{ .Values.monitoring.exporter.opensearch.credentialsSecret.passwordKey }}
         ports:
         - name: metrics
