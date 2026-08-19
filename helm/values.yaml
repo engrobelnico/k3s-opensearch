@@ -16,6 +16,9 @@ opensearch-cluster:
       version: 3.8.0
       vendor: Opensearch
       httpPort: 9200
+      # Keep operator-managed multi-node bootstrap flow.
+      # Do not set discovery.type=single-node here.
+      additionalConfig: {}
       setVMMaxMapCount: true
       drainDataNodes: true
       pluginsList: []
@@ -44,12 +47,14 @@ opensearch-cluster:
         opensearch.ssl.verificationMode: none
       opensearchCredentialsSecret:
         name: "opensearch-admin-password"
+    bootstrap:
+      diskSize: "5Gi"
     nodePools:
     - component: masters
       diskSize: "5Gi"
       replicas: 1
       roles:
-        - "master"
+        - "cluster_manager"
         - "data"
       probes:
         startup:
