@@ -12,7 +12,7 @@ spec:
       - name: hot
         actions:
             - replicaCount:
-                numberOfReplicas: 4
+                numberOfReplicas: 0
         transitions:
             - stateName: delete
               conditions:
